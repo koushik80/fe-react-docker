@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true koushik80/fe-react-docker npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-north-1"
+  app: "fe-react-docker"
+  env: "Fereactdocker-env"
+  bucket_name: "elasticbeanstalk-eu-north-1-669225622563"
+  bucket_path: "fe-react-docker"
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
